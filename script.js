@@ -34,7 +34,7 @@ function displayPhotos() {
             src: photo.urls.regular,
             alt: photo.alt_description,
             title: photo.alt_description
-        })
+        });
 
         //put <img> inside <a>, then put that <img> inside image container
         item.appendChild(img);
@@ -55,6 +55,15 @@ async function getPhotos() {
     }
 }
 
-// on load
+// listen to scroll event and trigger inifinite scroll function
+// window object is parent of document, and grandparent of body
 
+window.addEventListener('scroll', () => {
+    if (window.scrollY + window.innerHeight >= document.body.offsetHeight - 1000) {
+        getPhotos();
+        console.log('load more photos');
+    }
+});
+
+// on load
 getPhotos();
