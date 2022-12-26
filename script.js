@@ -4,6 +4,9 @@ const loader = document.getElementById('loader');
 
 let photosArray = [];
 
+// set initial load value to optimize load performance
+let initialLoad = true;
+
 // get photos from unsplash API
 const count = 5;
 const apiKey = 'chx4wgQdU8nTAvfE1SVPTm7kqA7tihPVTh_rB8MD0u8';
@@ -21,6 +24,8 @@ function imageLoaded() {
     if (imagesLoaded === totalImages) {
         ready = true;
         loader.hidden = true;
+        initialLoad = false;
+        count = 10;
         console.log('ready =', ready);
     }
 }
